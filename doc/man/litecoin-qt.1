@@ -3,7 +3,7 @@
 .SH NAME
 litecoin-qt \- manual page for litecoin-qt v0.16.0.0
 .SH DESCRIPTION
-Litecoin Core version v0.16.0.0 (64\-bit)
+Litecoin Core version v0.16.0.0\-dirty (64\-bit)
 Usage:
 .IP
 litecoin\-qt [command\-line options]
@@ -288,7 +288,7 @@ Set key pool size to <n> (default: 1000)
 \fB\-fallbackfee=\fR<amt>
 .IP
 A fee rate (in LTC/kB) that will be used when fee estimation has
-insufficient data (default: 0.0002)
+insufficient data (default: 0.02)
 .HP
 \fB\-discardfee=\fR<amt>
 .IP
@@ -301,7 +301,7 @@ limited by the fee estimate for the longest target
 \fB\-mintxfee=\fR<amt>
 .IP
 Fees (in LTC/kB) smaller than this are considered zero fee for
-transaction creation (default: 0.00001)
+transaction creation (default: 0.001)
 .HP
 \fB\-paytxfee=\fR<amt>
 .IP
