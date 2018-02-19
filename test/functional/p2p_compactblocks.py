@@ -16,6 +16,8 @@ from test_framework.script import CScript, OP_TRUE, OP_DROP
 from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import assert_equal, wait_until, softfork_active
 
+VB_TOP_BITS = 0x20000000
+
 # TestP2PConn: A peer we use to send messages to bitcoind, and store responses.
 class TestP2PConn(P2PInterface):
     def __init__(self, cmpct_version):
@@ -108,7 +110,7 @@ class CompactBlocksTest(BitcoinTestFramework):
         tip = node.getbestblockhash()
         mtp = node.getblockheader(tip)['mediantime']
         block = create_block(int(tip, 16), create_coinbase(height + 1), mtp + 1)
-        block.nVersion = 4
+        block.nVersion = VB_TOP_BITS
         if segwit:
             add_witness_commitment(block)
         block.solve()
