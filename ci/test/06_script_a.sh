@@ -28,11 +28,11 @@ END_FOLD
 
 BEGIN_FOLD distdir
 # Create folder on host and docker, so that `cd` works
-mkdir -p "bitcoin-$HOST"
+mkdir -p "litecoin-$HOST"
 DOCKER_EXEC make distdir VERSION=$HOST
 END_FOLD
 
-export P_CI_DIR="$P_CI_DIR/bitcoin-$HOST"
+export P_CI_DIR="$P_CI_DIR/litecoin-$HOST"
 
 BEGIN_FOLD configure
 DOCKER_EXEC ./configure --cache-file=../config.cache $BITCOIN_CONFIG_ALL $BITCOIN_CONFIG || ( (DOCKER_EXEC cat config.log) && false)
