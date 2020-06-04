@@ -84,10 +84,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000c1bfe2bbe614f41260");
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000040679f032b2968ac1cc");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x66f49ad85624c33e4fd61aa45c54012509ed4a53308908dd07f56346c7939273"); // 1441280
+        consensus.defaultAssumeValid = uint256S("0x2584800d26d537963cd52b4aa25578cfc0d21545a0bcbe7fc9952c5942da7198"); // 1853459
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -100,8 +100,8 @@ public:
         pchMessageStart[3] = 0xdb;
         nDefaultPort = 9333;
         nPruneAfterHeight = 100000;
-        m_assumed_blockchain_size = 320;
-        m_assumed_chain_state_size = 4;
+        m_assumed_blockchain_size = 32;
+        m_assumed_chain_state_size = 1.2;
 
         genesis = CreateGenesisBlock(1317972665, 2084524493, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
@@ -157,10 +157,10 @@ public:
         };
 
         chainTxData = ChainTxData{
-            // Data from rpc: getchaintxstats 4096 0000000000000000002e63058c023a9a1de233554f28c7b21380b6c9003f36a8
-            /* nTime    */ 1532884444,
-            /* nTxCount */ 331282217,
-            /* dTxRate  */ 2.4
+            // Data from rpc: getchaintxstats 4096 bef7e5507331c7b672a483e03607140d602aced15e911c2b7b652f212adbba05
+            /* nTime    */ 1591247487,
+            /* nTxCount */ 43926529,
+            /* dTxRate  */ 0.4037280381233366
         };
     }
 };
@@ -193,10 +193,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000001df7b5aa1700ce");
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000037dc573a747919");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x1efb29c8187d5a496a33377941d1df415169c3ce5d8c05d055f25b683ec3f9a3"); // 612653
+        consensus.defaultAssumeValid = uint256S("0x7a242c6ab93d7c005a70e63f9e627c7cfb1f92598f2d686835ccb9eb16f12c41"); // 1493905
 
         pchMessageStart[0] = 0xfd;
         pchMessageStart[1] = 0xd2;
@@ -204,8 +204,8 @@ public:
         pchMessageStart[3] = 0xf1;
         nDefaultPort = 19335;
         nPruneAfterHeight = 1000;
-        m_assumed_blockchain_size = 40;
-        m_assumed_chain_state_size = 2;
+        m_assumed_blockchain_size = 3;
+        m_assumed_chain_state_size = 0.3;
 
         genesis = CreateGenesisBlock(1486949366, 293345, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
@@ -242,10 +242,10 @@ public:
         };
 
         chainTxData = ChainTxData{
-            // Data from RPC: getchaintxstats 4096 000000000000056c49030c174179b52a928c870e6e8a822c75973b7970cfbd01
-            /* nTime    */ 1585561140,
-            /* nTxCount */ 13483,
-            /* dTxRate  */ 0.08523187013249722,
+            // Data from RPC: getchaintxstats 4096 a112ad0d529306bd98a4d7ec2e6ce3901d58bd47d09e84dadd9e7c9a2b60c1c7
+            /* nTime    */ 1591248589,
+            /* nTxCount */ 3660624,
+            /* dTxRate  */ 0.03419265611615453,
         };
     }
 };
