@@ -201,7 +201,7 @@ class PSBTTest(BitcoinTestFramework):
         self.log.info("Test invalid fee rate settings")
         assert_raises_rpc_error(-8, "Invalid fee_rate 0.000 sat/vB (must be greater than 0)",
             self.nodes[1].walletcreatefundedpsbt, inputs, outputs, 0, {"fee_rate": 0, "add_inputs": True})
-        assert_raises_rpc_error(-8, "Invalid feeRate 0.00000000 BTC/kvB (must be greater than 0)",
+        assert_raises_rpc_error(-8, "Invalid feeRate 0.00000000 LTC/kvB (must be greater than 0)",
             self.nodes[1].walletcreatefundedpsbt, inputs, outputs, 0, {"feeRate": 0, "add_inputs": True})
         for param, value in {("fee_rate", 100000), ("feeRate", 1)}:
             assert_raises_rpc_error(-4, "Fee exceeds maximum configured by user (e.g. -maxtxfee, maxfeerate)",
@@ -214,7 +214,7 @@ class PSBTTest(BitcoinTestFramework):
                 self.nodes[1].walletcreatefundedpsbt, inputs, outputs, 0, {"fee_rate": "", "add_inputs": True})
 
         self.log.info("- raises RPC error if both feeRate and fee_rate are passed")
-        assert_raises_rpc_error(-8, "Cannot specify both fee_rate (sat/vB) and feeRate (BTC/kvB)",
+        assert_raises_rpc_error(-8, "Cannot specify both fee_rate (sat/vB) and feeRate (LTC/kvB)",
             self.nodes[1].walletcreatefundedpsbt, inputs, outputs, 0, {"fee_rate": 0.1, "feeRate": 0.1, "add_inputs": True})
 
         self.log.info("- raises RPC error if both feeRate and estimate_mode passed")
