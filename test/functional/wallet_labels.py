@@ -138,9 +138,9 @@ class WalletLabelsTest(BitcoinTestFramework):
         node.createwallet(wallet_name='watch_only', disable_private_keys=True)
         wallet_watch_only = node.get_wallet_rpc('watch_only')
         BECH32_VALID = {
-            '✔️_VER15_PROG40': 'bcrt10qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqn2cjv3',
-            '✔️_VER16_PROG03': 'bcrt1sqqqqqjq8pdp',
-            '✔️_VER16_PROB02': 'bcrt1sqqqqqjq8pv',
+            '✔️_VER15_PROG40': 'rltc10qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqvs3zqy',
+            '✔️_VER16_PROG03': 'rltc1sqqqqqgayys4',
+            '✔️_VER16_PROB02': 'rltc1sqqqquvz2k4',
         }
         BECH32_INVALID = {
             '❌_VER15_PROG41': 'bcrt10qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzc7xyq',
@@ -156,7 +156,7 @@ class WalletLabelsTest(BitcoinTestFramework):
             ad = BECH32_INVALID[l]
             assert_raises_rpc_error(
                 -5,
-                "Address is not valid" if self.options.descriptors else "Invalid Bitcoin address or script",
+                "Address is not valid" if self.options.descriptors else "Invalid Litecoin address or script",
                 lambda: wallet_watch_only.importaddress(label=l, rescan=False, address=ad),
             )
 
