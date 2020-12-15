@@ -594,6 +594,7 @@ AC_ARG_WITH([daemon],
   [build_bitcoind=$withval],
   [build_bitcoind=yes])
 
+pkg_openssl=no
 case $host in
   *mingw*)
      TARGET_OS=windows
@@ -658,6 +659,7 @@ case $host in
          if test x$openssl_prefix != x; then
            PKG_CONFIG_PATH="$openssl_prefix/lib/pkgconfig:$PKG_CONFIG_PATH"
            export PKG_CONFIG_PATH
+           pkg_openssl=yes
          fi
          if test x$bdb_prefix != x && test "x$BDB_CFLAGS" = "x" && test "x$BDB_LIBS" = "x"; then
            dnl This must precede the call to BITCOIN_FIND_BDB48 below.
@@ -1261,11 +1263,6 @@ if test x$enable_wallet != xno; then
     AC_MSG_RESULT([$use_sqlite])
 fi
 
-dnl Check for libbitcoin_crypto_avx2
-AC_CHECK_HEADER([openssl/crypto.h],,AC_MSG_ERROR(libcrypto headers missing))
-AC_CHECK_LIB([crypto],      [main],CRYPTO_LIBS=-lcrypto, AC_MSG_ERROR(libcrypto missing))
-
-
 dnl Check for libminiupnpc (optional)
 if test x$use_upnp != xno; then
   AC_CHECK_HEADERS(
@@ -1364,6 +1361,15 @@ if test x$use_tests = xyes; then
   CPPFLAGS="$TEMP_CPPFLAGS"
 
   fi
+fi
+
+dnl openssl check
+
+if test "x$pkg_openssl" = xyes; then
+  PKG_CHECK_MODULES([CRYPTO], [libcrypto],,[AC_MSG_ERROR(libcrypto not found.)])
+else
+  AC_CHECK_HEADER([openssl/crypto.h],,AC_MSG_ERROR(libcrypto headers missing))
+  AC_CHECK_LIB([crypto],      [main],CRYPTO_LIBS=-lcrypto, AC_MSG_ERROR(libcrypto missing))
 fi
 
 dnl libevent check
@@ -1779,6 +1785,7 @@ echo "  with gui / qt = $bitcoin_enable_qt"
 if test x$bitcoin_enable_qt != xno; then
     echo "    with qr     = $use_qr"
 fi
+echo "  pkg openssl   = $pkg_openssl"
 echo "  with zmq      = $use_zmq"
 echo "  with test     = $use_tests"
 if test x$use_tests != xno; then
