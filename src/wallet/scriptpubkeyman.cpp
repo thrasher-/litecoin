@@ -191,6 +191,11 @@ IsMineResult IsMineInner(const LegacyScriptPubKeyMan& keystore, const CScript& s
         }
         break;
     }
+    case TxoutType::TX_STANDARDTEMPLATE:
+    {
+        ret = IsMineResult::NO;
+        break;
+    }
     }
 
     if (ret == IsMineResult::NO && keystore.HaveWatchOnly(scriptPubKey)) {
